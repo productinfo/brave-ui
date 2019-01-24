@@ -337,7 +337,7 @@ storiesOf('Feature Components/Rewards/Concepts/Desktop', module)
                 publisherImg={bartBaker}
                 publisherName={'Bart Baker'}
                 monthlyAmount={'5.0'}
-                isVerified={true}
+                isVerified={boolean('Verified', true)}
                 tipsEnabled={boolean('Tips enabled', store.state.tipsEnabled)}
                 includeInAuto={boolean('Tips enabled', store.state.includeInAuto)}
                 attentionScore={'17'}
