@@ -3,7 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { ComponentType } from 'react'
-import styled from '../../../../theme'
+import styled from '../../../../components/style/themes'
 import DefaultModal, { Props } from '../../../../components/popupModals/modal'
 import Heading from '../../../../components/text/heading'
 

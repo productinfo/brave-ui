@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import styled from '../../../theme'
-import palette from '../../../theme/palette'
+import styled from '../../../components/style/themes'
+import palette from '../../../components/style/color/colorPalette'
 import { setValueBasedOnSize } from '../../../helpers'
 
 interface LabelProps {
@@ -17,7 +17,13 @@ export const Label = styled<LabelProps, 'label'>('label')`
   font-size: ${p => setValueBasedOnSize(p.size, '16px', '12px', '18px')};
   font-weight: ${p => setValueBasedOnSize(p.size, 'normal', '500', '500')};
   line-height: ${p => setValueBasedOnSize(p.size, '1', '18px', '27px')};
-  color: ${p => setValueBasedOnSize(p.size, palette.grey100, palette.grey200, palette.grey200)};
+  color: ${p =>
+    setValueBasedOnSize(
+      p.size,
+      palette.grey200,
+      palette.grey300,
+      palette.grey300
+    )};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -31,8 +37,8 @@ interface HighlightProps {
 export const Highlight = styled<HighlightProps, 'em'>('em')`
   box-sizing: border-box;
   font-family: ${p => p.theme.fontFamily.heading};
-  color: ${p => p.enabled ? p.theme.color.brandBrave : palette.grey300};
-  font-size: ${p => p.size === 'large' ? '22px' : 'inherit'};
+  color: ${p => (p.enabled ? p.theme.color.primaryColor : palette.grey400)};
+  font-size: ${p => (p.size === 'large' ? '22px' : 'inherit')};
   font-weight: 600;
   text-transform: uppercase;
   font-style: normal;
@@ -40,7 +46,7 @@ export const Highlight = styled<HighlightProps, 'em'>('em')`
 
 export const UnHighlight = styled<{}, 'span'>('span')`
   box-sizing: border-box;
-  color: ${palette.grey400};
+  color: ${palette.grey500};
   font-weight: 300;
 `
 
@@ -50,13 +56,13 @@ interface DescriptionProps {
 
 export const Description = styled<DescriptionProps, 'p'>('p')`
   box-sizing: border-box;
-  color: ${p => p.enabled ? palette.grey400 : palette.grey500};
-  font-size: ${p => p.enabled ? '11px' : '12px'};
+  color: ${p => (p.enabled ? palette.grey500 : palette.grey600)};
+  font-size: ${p => (p.enabled ? '11px' : '12px')};
   font-family: ${p => p.theme.fontFamily.body};
   font-weight: normal;
   line-height: 18px;
   padding: 0;
-  margin: ${p => p.enabled ? '0 0 10px' : '0'};
+  margin: ${p => (p.enabled ? '0 0 10px' : '0')};
   text-align: left;
 `
 
@@ -101,12 +107,14 @@ interface ResourcesSwitchLabelProps {
   disabled?: boolean
 }
 
-export const ResourcesSwitchLabel = styled<ResourcesSwitchLabelProps, 'span'>('span')`
+export const ResourcesSwitchLabel = styled<ResourcesSwitchLabelProps, 'span'>(
+  'span'
+)`
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   padding: 0 11px;
   user-select: none;
-  pointer-events: ${p => p.disabled ? 'none' : null};
+  pointer-events: ${p => (p.disabled ? 'none' : null)};
 `
 
 export const ResourcesStatusTitle = styled<{}, 'span'>('span')`
@@ -120,7 +128,7 @@ export const ResourcesListText = styled<{}, 'div'>('div')`
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   line-height: 1;
-  color: ${palette.grey500};
+  color: ${palette.grey600};
   white-space: nowrap;
   overflow-x: hidden;
   text-overflow: ellipsis;
@@ -135,9 +143,11 @@ interface ResourcesLabelScriptsProps {
   accent?: 'blocked' | 'allowed'
 }
 
-export const ResourcesSubTitle = styled<ResourcesLabelScriptsProps, 'span'>('span')`
+export const ResourcesSubTitle = styled<ResourcesLabelScriptsProps, 'span'>(
+  'span'
+)`
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   padding: 0 5px;
-  color: ${p => p.accent === 'blocked' ? palette.red500 : palette.green500};
+  color: ${p => (p.accent === 'blocked' ? palette.red500 : palette.green500)};
 `

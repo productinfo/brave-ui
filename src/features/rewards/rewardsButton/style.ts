@@ -1,7 +1,7 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
-* License, v. 2.0. If a copy of the MPL was not distributed with this file,
-* You can obtain one at http://mozilla.org/MPL/2.0/.
-*/
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
 
 import { Type } from './index'
 import styled, { css } from 'styled-components'
@@ -18,36 +18,35 @@ const getTypeStyle = (type?: Type, disabled?: boolean) => {
     case 'tip':
       typeCss = css`
         height: 40px;
-        color: #4C54D2;
+        color: #4c54d2;
         border-radius: 20px;
         font-size: 12px;
-        border: 1px solid #A1A8F2;
+        border: 1px solid #a1a8f2;
       `
       break
     case 'opt-in':
       typeCss = css`
         height: 56px;
         border-radius: 28px;
-        letter-spacing: .6px;
+        letter-spacing: 0.6px;
         border: 1px solid rgba(255, 255, 255, 0.35);
 
         &:hover {
-          background: ${p => disabled ? 'inherit' : 'rgba(0, 0, 0, 0.05)'};
+          background: ${p => (disabled ? 'inherit' : 'rgba(0, 0, 0, 0.05)')};
         }
       `
       break
     case 'cta-opt-in':
       typeCss = css`
         height: 56px;
-        letter-spacing: .6px;
-        background: ${p => p.theme.color.brandBrave};
+        letter-spacing: 0.6px;
+        background: ${p => p.theme.color.primaryColor};
 
         &:hover {
           background: ${p =>
             disabled
-              ? p.theme.color.brandBrave
-              : p.theme.brandBraveInteracting
-          };
+              ? p.theme.color.primaryColor
+              : p.theme.brandBraveInteracting};
         }
       `
       break
@@ -63,7 +62,7 @@ export const StyledButtonWrapper = styled<StyleProps, 'button'>('button')`
   font-size: 14px;
   border-radius: 28px;
   background: inherit;
-  cursor: ${p => p.disabled ? 'default' : 'pointer'};
+  cursor: ${p => (p.disabled ? 'default' : 'pointer')};
   ${p => getTypeStyle(p.type, p.disabled)}
 `
 

@@ -3,8 +3,8 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { ComponentType } from 'react'
-import styled from '../../../theme'
-import palette from '../../../theme/palette'
+import styled from '../../../components/style/themes'
+import palette from '../../../components/style/color/colorPalette'
 
 // Extendable components
 // ..............................
@@ -50,9 +50,11 @@ interface MainToggleFlexProps {
   enabled: boolean
 }
 
-export const MainToggleFlex = styled(Flex as ComponentType<MainToggleFlexProps>)`
+export const MainToggleFlex = styled(Flex as ComponentType<
+  MainToggleFlexProps
+>)`
   justify-content: space-between;
-  padding: ${p => p.enabled ? '0' : '0 0 22px'};
+  padding: ${p => (p.enabled ? '0' : '0 0 22px')};
 `
 
 export const MainSiteInfoGrid = styled(Grid)`
@@ -94,13 +96,15 @@ interface ResourcesStatusGridProps {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-export const ResourcesStatusGrid = styled(Grid as ComponentType<ResourcesStatusGridProps>)`
-  grid-template-columns: ${p => p.withStats ? '28px 28px 1fr' : '28px 1fr'};
+export const ResourcesStatusGrid = styled(Grid as ComponentType<
+  ResourcesStatusGridProps
+>)`
+  grid-template-columns: ${p => (p.withStats ? '28px 28px 1fr' : '28px 1fr')};
   padding: 5px 25px 5px 20px;
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
-  color: #E9E9F4;
+  color: #e9e9f4;
   background-color: rgba(255, 255, 255, 0.15);
   user-select: none;
   cursor: pointer;
@@ -119,9 +123,9 @@ export const ResourcesSubTitleGrid = styled(Grid)`
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
-  color: #E9E9F4;
+  color: #e9e9f4;
   height: auto;
-  background: ${palette.grey800};
+  background: ${palette.grey900};
 `
 
 // Footer
@@ -142,7 +146,7 @@ export const MainFooterLinkFlex = styled(Flex.withComponent('a'))`
 
 export const ResourcesFooterGrid = styled(Grid.withComponent('footer'))`
   grid-template-columns: 1fr 1fr;
-  border-top: 1px solid rgba(255,255,255,0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 `
 
 export const ResourcesFooterGridColumnLeft = styled(Flex)`
@@ -162,7 +166,7 @@ export const ResourcesFooterFlex = styled(Flex)`
   justify-content: center;
   margin: auto;
   padding: 15px 0;
-  border-top: 1px solid rgba(255,255,255,0.15);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   width: 100%;
 `
 
@@ -174,23 +178,23 @@ export const StatFlex = styled(Flex)`
   width: 100%;
   height: 100%;
   font-family: ${p => p.theme.fontFamily.heading};
-  color: ${p => p.disabled ? palette.grey500 : palette.grey200};
-  pointer-events: ${p => p.disabled ? 'none' : null};
+  color: ${p => (p.disabled ? palette.grey600 : palette.grey300)};
+  pointer-events: ${p => (p.disabled ? 'none' : null)};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;
   user-select: none;
   padding: 13px 0;
-  `
+`
 
 export const ToggleGrid = styled(Grid)`
   grid-template-columns: 48px 28px 1fr auto;
   padding: 0;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
-  color: #E9E9F4;
+  color: #e9e9f4;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.15);
@@ -223,8 +227,9 @@ export const SelectGrid = styled(ToggleGrid as ComponentType<SelectGridProps>)`
   }
 
   &:hover {
-    cursor: ${p => p.hasUserInteraction ? 'pointer' : 'unset'};
-    background-color: ${p => p.hasUserInteraction ? 'rgba(255, 255, 255, 0.15)' : 'transparent'};
+    cursor: ${p => (p.hasUserInteraction ? 'pointer' : 'unset')};
+    background-color: ${p =>
+      p.hasUserInteraction ? 'rgba(255, 255, 255, 0.15)' : 'transparent'};
   }
 `
 
@@ -232,15 +237,18 @@ interface ResourcesListGridProps {
   hightlighted: boolean
 }
 
-export const ResourcesListGrid = styled(Grid as ComponentType<ResourcesListGridProps>)`
+export const ResourcesListGrid = styled(Grid as ComponentType<
+  ResourcesListGridProps
+>)`
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto;
   padding: 9px 25px 9px 20px;
   font-size: 12px;
   font-weight: 500;
   line-height: 18px;
-  color: #E9E9F4;
-  background-color: ${p => p.hightlighted ? 'rgba(255, 255, 255, 0.15)' : null};
+  color: #e9e9f4;
+  background-color: ${p =>
+    p.hightlighted ? 'rgba(255, 255, 255, 0.15)' : null};
   &:hover {
     background-color: rgba(255, 255, 255, 0.15);
   }

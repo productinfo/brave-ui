@@ -2,7 +2,7 @@
  * License. v. 2.0. If a copy of the MPL was not distributed with this file.
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import styled, { css, ThemedStyledProps } from '../../../theme'
+import styled, { css, ThemedStyledProps } from '../../style/themes'
 import { Size } from './index'
 
 interface StyleProps {
@@ -31,13 +31,16 @@ const getThemeSizes = (p: ThemedStyledProps<StyleProps>) => {
   `
 }
 
-const getThemeColors = (p: ThemedStyledProps<StyleProps>, selected: boolean | undefined) => {
-  let fillColor = p.theme.color.brandBat
+const getThemeColors = (
+  p: ThemedStyledProps<StyleProps>,
+  selected: boolean | undefined
+) => {
+  let fillColor = p.theme.color.primaryColor
   let borderColor = p.theme.color.subtleActive
 
   if (!p.disabled) {
     borderColor = selected
-      ? p.theme.color.brandBat
+      ? p.theme.color.primaryColor
       : p.theme.color.brandBatActive
   }
 
@@ -89,5 +92,5 @@ export const StyledText = styled<StyleProps, 'span'>('span')`
   flex: 1;
   letter-spacing: 0;
   display: flex;
-  padding-top: ${(p) => p.size === 'big' ? '2px' : '1px'};
+  padding-top: ${p => (p.size === 'big' ? '2px' : '1px')};
 `

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { shallow, mount } from 'enzyme'
 import { create } from 'react-test-renderer'
 import Checkbox from './index'
-import { TestThemeProvider } from '../../../theme'
+import { TestThemeProvider } from '../../style/themes'
 
 describe('Checkbox tests', () => {
   const baseComponent = (props?: object) => <TestThemeProvider><Checkbox id='toggle' {...props} /></TestThemeProvider>

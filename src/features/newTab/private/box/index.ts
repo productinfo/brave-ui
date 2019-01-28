@@ -3,7 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 import { ComponentType } from 'react'
-import styled from '../../../../theme'
+import styled from '../../../../components/style/themes'
 import Heading from '../../../../components/text/heading'
 import Button, { Props as ButtonProps } from '../../../../components/buttonsIndicators/button'
 import { DuckDuckGoIcon, TorLockIcon } from '../../../../components/icons'

@@ -8,8 +8,8 @@ import { setDefaults } from '@storybook/addon-info'
 import { withKnobs } from '@storybook/addon-knobs'
 import { initLocale } from '../src/helpers'
 import locales from '../stories/assets/locale'
-import Theme from '../src/theme/brave-default'
-import { ThemeProvider } from '../src/theme'
+import Theme from '../src/components/style/themes/default'
+import { ThemeProvider } from '../src/components/style/themes'
 
 setOptions({
   name: 'Brave UI',
@@ -23,16 +23,12 @@ setDefaults({
   header: false
 })
 
-function loadStories () {
+function loadStories() {
   initLocale(locales)
   const req = require.context('../stories', true, /\.tsx$/)
   req.keys().forEach(filename => req(filename))
 }
 
-addDecorator((story) => (
-  <ThemeProvider theme={Theme}>
-    {story()}
-  </ThemeProvider>
-))
+addDecorator(story => <ThemeProvider theme={Theme}>{story()}</ThemeProvider>)
 
 configure(loadStories, module)

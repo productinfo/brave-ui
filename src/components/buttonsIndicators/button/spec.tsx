@@ -3,7 +3,7 @@ import * as React from 'react'
 import { shallow } from 'enzyme'
 import { create } from 'react-test-renderer'
 import Button from './index'
-import { TestThemeProvider } from '../../../theme'
+import { TestThemeProvider } from '../../style/themes'
 
 describe('Button tests', () => {
   const baseComponent = (props?: object) => <TestThemeProvider><Button id='button' text='test' {...props} /></TestThemeProvider>

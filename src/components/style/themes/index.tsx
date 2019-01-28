@@ -1,9 +1,11 @@
 // @ts-ignore: Needed for ThemeProvider
 import * as React from 'react'
 import * as styledComponents from 'styled-components'
-import IThemeProps, { BraveThemedStyledProps as ThemedStyledProps } from './theme-interface'
+import IThemeProps, {
+  BraveThemedStyledProps as ThemedStyledProps
+} from './themeInterface'
 // theme for testing
-import TestTheme from './brave-default'
+import TestTheme from './default'
 
 const {
   default: styled,
@@ -17,10 +19,21 @@ const {
   //   see: https://github.com/palantir/tslint/issues/3505
   //   It's possibly due to the rule upstream in tslint-config-standard
   // tslint:disable-next-line
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<IThemeProps>
+} = styledComponents as styledComponents.ThemedStyledComponentsModule<
+  IThemeProps
+>
 
 export default styled
 
-const TestThemeProvider = (props: any) => <ThemeProvider theme={TestTheme} {...props} />
+const TestThemeProvider = (props: any) => (
+  <ThemeProvider theme={TestTheme} {...props} />
+)
 
-export { css, injectGlobal, keyframes, ThemeProvider, ThemedStyledProps, TestThemeProvider }
+export {
+  css,
+  injectGlobal,
+  keyframes,
+  ThemeProvider,
+  ThemedStyledProps,
+  TestThemeProvider
+}

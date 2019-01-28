@@ -3,7 +3,7 @@ import * as React from 'react'
 import { shallow } from 'enzyme'
 import { create } from 'react-test-renderer'
 import TextArea from './index'
-import { TestThemeProvider } from '../../../theme'
+import { TestThemeProvider } from '../../style/themes'
 
 describe('TextArea tests', () => {
   const baseComponent = (props?: object) => <TestThemeProvider><TextArea id='area' {...props} /></TestThemeProvider>

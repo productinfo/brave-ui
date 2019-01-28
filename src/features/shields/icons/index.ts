@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import styled from '../../../theme'
+import styled from '../../../components/style/themes'
 
 import { ComponentType } from 'react'
 import {
@@ -14,7 +14,7 @@ import {
   CloseCircleIcon,
   CheckCircleIcon
 } from '../../../components/icons'
-import palette from '../../../theme/palette'
+import palette from '../../../components/style/color/colorPalette'
 
 export const LinkIcon = styled(OpenNewIcon as ComponentType)`
   width: 24px;
@@ -25,7 +25,7 @@ export const LinkIcon = styled(OpenNewIcon as ComponentType)`
 export const ShieldIcon = styled(ShieldAlertIcon as ComponentType)`
   width: 48px;
   height: 48px;
-  color: ${palette.grey600};
+  color: ${palette.grey700};
 `
 
 export const ShowMoreIcon = styled(CaratDownIcon as ComponentType)`

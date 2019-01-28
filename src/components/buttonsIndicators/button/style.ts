@@ -2,10 +2,15 @@
  * License. v. 2.0. If a copy of the MPL was not distributed with this file.
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-import styled, { css, ThemedStyledProps } from '../../../theme'
+import styled, { css, ThemedStyledProps } from '../../style/themes'
 import { Props } from './index'
 
-function largeMediumSmall (largeValue: any, mediumValue: any, smallValue: any, ctaValue?: any) {
+function largeMediumSmall (
+  largeValue: any,
+  mediumValue: any,
+  smallValue: any,
+  ctaValue?: any
+) {
   return (p: Props) => {
     switch (p.size) {
       case 'large':
@@ -15,7 +20,7 @@ function largeMediumSmall (largeValue: any, mediumValue: any, smallValue: any, c
       case 'small':
         return smallValue
       case 'call-to-action':
-        return (ctaValue == null) ? largeValue : ctaValue
+        return ctaValue == null ? largeValue : ctaValue
     }
   }
 }
@@ -28,19 +33,8 @@ const getThemeColors = (p: ThemedStyledProps<Props>) => {
     mainColor = hoverColor = activeColor = p.theme.color.disabled
   } else {
     switch (p.type) {
-      case 'accent':
-        if (p.brand === 'brave') {
-          mainColor = p.theme.color.brandBrave
-          hoverColor = p.theme.color.brandBraveInteracting
-          activeColor = p.theme.color.brandBraveActive
-        } else if (p.brand === 'rewards') {
-          mainColor = p.theme.color.brandBat
-          hoverColor = p.theme.color.brandBatInteracting
-          activeColor = p.theme.color.brandBatActive
-        }
-        break
       case 'default':
-        mainColor = p.theme.color.defaultControl
+        mainColor = p.theme.color.primaryColor
         hoverColor = p.theme.color.defaultControlInteracting
         activeColor = p.theme.color.defaultControlActive
         break
@@ -74,17 +68,23 @@ const StyledButton = styled<Props, 'button'>('button')`
   border: none;
   outline: none;
   display: flex;
-  flex-direction: ${p => p.icon && p.icon.position === 'after' ? 'row' : 'row-reverse'};
+  flex-direction: ${p =>
+    p.icon && p.icon.position === 'after' ? 'row' : 'row-reverse'};
   justify-content: center;
   align-items: center;
   font-family: Poppins, sans-serif;
-  cursor: ${p => p.disabled ? 'default' : 'pointer'};
+  cursor: ${p => (p.disabled ? 'default' : 'pointer')};
   user-select: none;
   font-size: ${largeMediumSmall('14px', '13px', '11px')};
   border-radius: ${largeMediumSmall('24px', '20px', '16px', '28px')};
-  width: ${p => p.size === 'call-to-action' ? '100%' : 'auto'};
+  width: ${p => (p.size === 'call-to-action' ? '100%' : 'auto')};
   min-width: ${largeMediumSmall('116px', '104px', '88px', '235px')};
-  padding: ${largeMediumSmall('14px 15px', '11px 15px', '7px 10px', '19px 15px')};
+  padding: ${largeMediumSmall(
+      '14px 15px',
+      '11px 15px',
+      '7px 10px',
+      '19px 15px'
+    )};
   :hover:enabled {
     --button-state-color: var(--button-main-color-hover);
   }
@@ -118,7 +118,7 @@ export const StyledText = styled<Props, 'div'>('div')`
   text-align: center;
   letter-spacing: 0;
   font-weight: 500;
-  text-transform: ${p => p.size === 'call-to-action' ? 'uppercase' : 'none'};
+  text-transform: ${p => (p.size === 'call-to-action' ? 'uppercase' : 'none')};
   line-height: 1;
 `
 
@@ -127,13 +127,15 @@ export const StyledIcon = styled<Props, 'div'>('div')`
   line-height: 0;
   height: var(--icon-size);
   width: var(--icon-size);
-  margin: ${(p) => {
+  margin: ${p => {
     // no margin required if only 1 content item
     if (!p.text || !p.icon) return null
     // -4px is a universal 'fix' to make the icons appear more aligned
     // with the text.
     // Consider removing this if not all icons are looking great with it,
     // and designers can address in icons, or accept the alignment.
-    return p.icon.position === 'before' ? '0 var(--icon-spacing) 0 -4px' : '0 -4px 0 var(--icon-spacing)'
+    return p.icon.position === 'before'
+      ? '0 var(--icon-spacing) 0 -4px'
+      : '0 -4px 0 var(--icon-spacing)'
   }};
 `
