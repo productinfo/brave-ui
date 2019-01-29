@@ -16,7 +16,7 @@ import Toggle from '../../../components/formControls/toggle'
 import { getLocale } from '../../../helpers'
 import { CloseStrokeIcon } from '../../../components/icons'
 
-type Donation = {tokens: string, converted: string, selected?: boolean}
+type Donation = { tokens: string, converted: string, selected?: boolean }
 
 export interface Props {
   allow: boolean
@@ -83,7 +83,6 @@ export default class Tip extends React.PureComponent<Props, {}> {
                 onToggle={this.onToggle}
                 checked={allow}
                 size={'small'}
-                type={'light'}
               />
             </StyledAllowToggle>
           </StyledTipWrapper>

@@ -21,7 +21,7 @@ export interface Props {
   onClick?: () => void
   id?: string
   disabled?: boolean
-  icon?: {image: React.ReactNode, position: 'before' | 'after'}
+  icon?: { image: React.ReactNode, position: 'before' | 'after' }
   className?: string
 }
 
@@ -65,17 +65,17 @@ export default class ThemedButton extends React.PureComponent<Props, {}> {
       <ButtonComponent className={className} onClick={onClick} disabled={disabled} {...deepProps}>
         {
           text
-          ? <StyledText {...deepProps}>
+            ? <StyledText {...deepProps}>
               {text}
             </StyledText>
-          : null
+            : null
         }
         {
           icon && icon.image
-          ? <StyledIcon {...deepProps}>
+            ? <StyledIcon {...deepProps}>
               {icon.image}
             </StyledIcon>
-          : null
+            : null
         }
       </ButtonComponent>
     )

@@ -1,40 +1,48 @@
-/* This Source Code Form is subject to the terms of the Mozilla Public
- * License. v. 2.0. If a copy of the MPL was not distributed with this file.
- * You can obtain one at http://mozilla.org/MPL/2.0/. */
-
-import styled, { css } from 'styled-components'
+import styled, { css, ThemedStyledProps } from '../../style/themes'
 import { Props } from './index'
 
-const getBulletStyle = (p: Props) => {
-  // default is large with dark variation
-  let size = 20
-  let offX = 20
-  let offY = 4
-  let bgColor = '#6D73D2'
-
-  if (p.size === 'small') {
-    size = 16
-    offX = 12
-    offY = 3
+function defaultSmall (
+  defaultValue: any,
+  smallValue: any
+) {
+  return (p: Props) => {
+    switch (p.size) {
+      case 'default':
+        return defaultValue
+      case 'small':
+        return smallValue
+    }
   }
+}
 
-  if (p.type === 'light') {
-    bgColor = '#fb542b'
-  }
+const getThemeColors = (p: ThemedStyledProps<Props>) => {
+  let mainColor = p.theme.color.white
+  let activeColor = p.theme.color.grey100
+  let sliderColor = p.theme.color.grey300
 
-  if (!p.checked) {
-    offX = -1
-    bgColor = '#CDD1D5'
-  }
-
-  if (p.disabled) {
-    bgColor = '#EBECF0'
+  if (p.checked) {
+    mainColor = p.theme.color.primary500
+    activeColor = p.theme.color.primary600
   }
 
   return css`
-    --toggle-bullet-size: ${size}px;
-    --toggle-bullet-transform: translate(${offX}px, calc(-50% - ${offY}px));
-    --toggle-bullet-background: ${bgColor};
+  --toggle-bullet-mainColor: ${mainColor};
+  --toggle-bullet-activeColor: ${activeColor};
+  --toggle-slider-color: ${sliderColor}
+  `
+}
+
+const moveBullet = (p: Props) => {
+  let translate = '22px'
+  if (p.size === 'small') {
+    translate = '16px'
+  }
+  if (!p.checked) {
+    translate = '0'
+  }
+
+  return css`
+  --toggle-bullet-translate: translateX(${translate});
   `
 }
 
@@ -44,46 +52,43 @@ export const StyledWrapper = styled<Props, 'div'>('div')`
 
 export const StyleToggle = styled<Props, 'div'>('div')`
   position: relative;
-  display: block;
-  height: ${(p) => p.size === 'small' ? '16px' : '24px'};
-  width: ${(p) => p.size === 'small' ? '28px' : '40px'};
-
-  ${(p) => p.disabled
-    ? css`
-      pointer-events: none;
-      animation: none;
-    ` : ''
-  };
+  display: inline-block;
+  height: ${(p) => p.size === 'small' ? '16px' : '20px'};
+  width: ${(p) => p.size === 'small' ? '28px' : '42px'};
+  opacity: ${(p) => p.disabled ? '.65' : ''};
 `
 
 export const StyledSlider = styled<Props, 'div'>('div')`
-  background: ${(p) => p.disabled ? '#F6F6FA' : '#A7ACB2'};
-  height: ${(p) => p.size === 'small' ? '6px' : '8px'};
-  margin-top: ${(p) => p.size === 'small' ? '5px' : '8px'};
-  width: 100%;
-  border-radius: 3px;
+  ${getThemeColors};
+  position: absolute;
+  border-radius: 4px;
+  background-color: var(--toggle-slider-color);
+  top: ${defaultSmall('6px', '5px')};
+  height: ${defaultSmall('8px', '6px')};
+  width: ${(p) => p.size === 'small' ? '28px' : '42px'};
 `
 
 export const StyledBullet = styled<Props, 'div'>('div')`
-  position: relative;
+  ${getThemeColors};
+  ${moveBullet};
+  position: absolute;
+  cursor: pointer;
+  height: ${defaultSmall('20px', '16px')};
+  width: ${defaultSmall('20px', '16px')};
+  background-color: var(--toggle-bullet-mainColor);
   border-radius: 50%;
   transition: all .4s ease;
-  ${getBulletStyle};
-  width: var(--toggle-bullet-size);
-  height: var(--toggle-bullet-size);
-  transform: var(--toggle-bullet-transform);
-  background-color: var(--toggle-bullet-background);
-  box-shadow: 0 3px 3px rgba(0,0,0,0.05);
-`
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  transform: var(--toggle-bullet-translate);
 
-export const StyledText = styled<Props, 'div'>('div')`
-  color: #838391;
-  font-size: ${(p) => p.size === 'small' ? '12px' : '14px'};
-  font-family: Poppins, sans-serif;
-  text-align: right;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-  margin: ${(p) => p.size === 'small' ? '0px' : '4px'} 8px 0 0;
-  opacity: ${(p) => !p.checked && !p.disabled ? 1 : 0 };
-  transition: 100ms ease-out;
-`
+  ${(p) => p.disabled ? css` pointer-events: none;` : ''};
+
+  :focus {
+    box-shadow: 0 0 0 2px rgba(251, 84, 43, 01);
+    outline: 0;
+  }
+
+  :active {
+    background-color: var(--toggle-bullet-activeColor);
+  }
+  `
